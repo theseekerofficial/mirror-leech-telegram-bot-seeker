@@ -46,8 +46,8 @@ def stats(update, context):
 
 def start(update, context):
     buttons = ButtonMaker()
-    buttons.buildbutton("Repo", "https://www.github.com/anasty17/mirror-leech-telegram-bot")
-    buttons.buildbutton("Owner", "https://www.github.com/anasty17")
+    buttons.buildbutton("Join To Use Me", "https://t.me/Master_Torrenz_s_Cave")
+    buttons.buildbutton("Owner", "https://t.me/MrUnknown114")
     reply_markup = buttons.build_menu(2)
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
@@ -56,7 +56,7 @@ Type /{BotCommands.HelpCommand} to get a list of available commands
 '''
         sendMarkup(start_string, context.bot, update.message, reply_markup)
     else:
-        sendMarkup('Not an Authorized user, deploy your own mirror-leech bot', context.bot, update.message, reply_markup)
+        sendMarkup('You can not use me in Priver Message, Please Join (https://t.me/Master_Torrenz_s_Cave) To use me. | I can do many things, hear the some of them is := Upload any direct link to GDrive (No need Your google drive accsess, I upload files to my own shared drive), Seed any Torrentz without SIZE LIMITE 😨, Download any YT Video and more. Join the group and Try😍', context.bot, update.message, reply_markup)
 
 def restart(update, context):
     restart_message = sendMessage("Restarting...", context.bot, update.message)
