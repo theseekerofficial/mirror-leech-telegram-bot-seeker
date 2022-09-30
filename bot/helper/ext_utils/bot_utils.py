@@ -106,8 +106,8 @@ def get_progress_bar_string(status):
     p = 0 if total == 0 else round(completed * 100 / total)
     p = min(max(p, 0), 100)
     cFull = p // 8
-    p_str = '■' * cFull
-    p_str += '□' * (12 - cFull)
+    p_str = '⧗' * cFull
+    p_str += '⧖' * (12 - cFull)
     p_str = f"[{p_str}]"
     return p_str
 
@@ -130,17 +130,17 @@ def get_readable_message():
                 msg += f"\n<b>Speed ⚡:</b> {download.speed()} | <b>ETA 🕛:</b> {download.eta()}"
                 if hasattr(download, 'seeders_num'):
                     try:
-                        msg += f"\n<b>Seeders:</b> {download.seeders_num()} | <b>Leechers:</b> {download.leechers_num()}"
+                        msg += f"\n<b>Seeders 🌱:</b> {download.seeders_num()} | <b>Leechers 💁:</b> {download.leechers_num()}"
                     except:
                         pass
             elif download.status() == MirrorStatus.STATUS_SEEDING:
-                msg += f"\n<b>Size: </b>{download.size()}"
-                msg += f"\n<b>Speed: </b>{download.upload_speed()}"
-                msg += f" | <b>Uploaded: </b>{download.uploaded_bytes()}"
-                msg += f"\n<b>Ratio: </b>{download.ratio()}"
-                msg += f" | <b>Time: </b>{download.seeding_time()}"
+                msg += f"\n<b>Size 🧩: </b>{download.size()}"
+                msg += f"\n<b>Speed ⚡: </b>{download.upload_speed()}"
+                msg += f" | <b>Uploaded ⬆️: </b>{download.uploaded_bytes()}"
+                msg += f"\n<b>Ratio ✨: </b>{download.ratio()}"
+                msg += f" | <b>Time ⌛: </b>{download.seeding_time()}"
             else:
-                msg += f"\n<b>Size: </b>{download.size()}"
+                msg += f"\n<b>Size 🧩: </b>{download.size()}"
             msg += f"\n<code>/{BotCommands.CancelMirror} {download.gid()}</code>"
             msg += "\n\n"
             if STATUS_LIMIT is not None and index == STATUS_LIMIT:
@@ -168,14 +168,14 @@ def get_readable_message():
                     up_speed += float(spd.split('K')[0]) * 1024
                 elif 'M' in spd:
                     up_speed += float(spd.split('M')[0]) * 1048576
-        bmsg = f"<b>CPU:</b> {cpu_percent()}% | <b>FREE:</b> {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
-        bmsg += f"\n<b>RAM:</b> {virtual_memory().percent}% | <b>UPTIME:</b> {get_readable_time(time() - botStartTime)}"
-        bmsg += f"\n<b>DL:</b> {get_readable_file_size(dl_speed)}/s | <b>UL:</b> {get_readable_file_size(up_speed)}/s"
+        bmsg = f"<b>CPU 🌀:</b> {cpu_percent()}% | <b>FREE 💠:</b> {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
+        bmsg += f"\n<b>RAM ⚜️:</b> {virtual_memory().percent}% | <b>UPTIME ♻️:</b> {get_readable_time(time() - botStartTime)}"
+        bmsg += f"\n<b>All DL Speed🔻:</b> {get_readable_file_size(dl_speed)}/s | <b>All UL Speed 🔺:</b> {get_readable_file_size(up_speed)}/s"
         if STATUS_LIMIT is not None and tasks > STATUS_LIMIT:
-            msg += f"<b>Page:</b> {PAGE_NO}/{pages} | <b>Tasks:</b> {tasks}\n"
+            msg += f"<b>Page 📄:</b> {PAGE_NO}/{pages} | <b>Tasks 📝:</b> {tasks}\n"
             buttons = ButtonMaker()
-            buttons.sbutton("Previous", "status pre")
-            buttons.sbutton("Next", "status nex")
+            buttons.sbutton("Previous ⏮️", "status pre")
+            buttons.sbutton("Next ⏭️", "status nex")
             button = buttons.build_menu(2)
             return msg + bmsg, button
         return msg + bmsg, ""
